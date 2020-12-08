@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension Bundle {
+public extension Bundle {
     
     /// 命名空间
     var nameSpace: String {

@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: -控制器相关协议
 /// -当前的导航/试图控制器
-protocol UIViewControllerProtocol { }
+public protocol UIViewControllerProtocol { }
 extension UIViewControllerProtocol {
     
     /// 当前正在展示的导航控制器 - 请在˙主线程调用
