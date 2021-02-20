@@ -11,7 +11,7 @@ struct EX<T> {
     var value: T
 }
 
-protocol EXCompatible { }
+public protocol EXCompatible { }
 extension EXCompatible {
     var ex: EX<Self> {
         set {}
