@@ -34,6 +34,12 @@ public extension EX where T == String {
         return predicate.evaluate(with: self.value)
     }
     
+    /// json序列化为对象
+    var anyObject: Any? {
+        guard let jsonData = self.value.data(using: .utf8) else { return nil }
+        return try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
+    }
+    
     /// 获取字节数 中文-2个 英文-1个
     var byteCount: Int {
         var allCount: Int = 0
