@@ -2,14 +2,21 @@ import XCTest
 @testable import SwiftToolLibrary
 
 final class SwiftToolLibraryTests: XCTestCase {
+    
+    
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-//        XCTAssertEqual(SwiftToolLibrary().text, "Hello, World!")
-    }
 
+    }
+    
     static var allTests = [
         ("testExample", testExample),
+        ("testString", testString),
     ]
+    
+    
+    func testString() {
+        let str: String = "我1"
+        XCTAssertEqual(3, str.ex.byteCount)
+    }
+    
 }
