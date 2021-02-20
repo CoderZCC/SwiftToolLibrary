@@ -2,8 +2,8 @@
 
 SwiftToolLibrary是一款加速swift开发的工具包；
 
-[![Build Status](https://travis-ci.org/SnapKit/SnapKit.svg)](https://travis-ci.org/SnapKit/SnapKit)
-[![Platform](https://img.shields.io/cocoapods/p/SnapKit.svg?style=flat)](https://github.com/SnapKit/SnapKit)
+[![Build Status](https://travis-ci.org/SnapKit/SnapKit.svg)](https://github.com/CoderZCC)
+[![Platform](https://img.shields.io/cocoapods/p/SnapKit.svg?style=flat)](https://github.com/CoderZCC)
 
 ## Requirements
 
