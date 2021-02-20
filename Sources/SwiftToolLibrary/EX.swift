@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct EX<T> {
+public struct EX<T> {
     var value: T
 }
 
 public protocol EXCompatible { }
 extension EXCompatible {
-    var ex: EX<Self> {
+    public var ex: EX<Self> {
         set {}
         get { EX(value: self) }
     }
