@@ -20,6 +20,21 @@ public extension EX where T == String {
         return self.value.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty
     }
     
+    /// intValue
+    var intValue: Int? {
+        return Int(self)
+    }
+    
+    /// 是否包含汉字
+    var isContainHan: Bool {
+        for i in self {
+            if "\u{4E00}" <= i && i <= "\u{9FA5}" {
+                return true
+            }
+        }
+        return false
+    }
+    
     /// 是否符合密码规则 6-16位
     var isPassword: Bool {
         let psd = "^\\S{6,16}$"

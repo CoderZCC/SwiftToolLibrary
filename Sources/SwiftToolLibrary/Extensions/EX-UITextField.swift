@@ -7,7 +7,6 @@
 
 import UIKit
 
-extension UITextField: EXCompatible { }
 public extension EX where T == UITextField {
     
     /// 占位文字颜色, 请先设置 placeholder 占位文字

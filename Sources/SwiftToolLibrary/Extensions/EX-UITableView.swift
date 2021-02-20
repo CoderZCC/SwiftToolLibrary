@@ -7,7 +7,6 @@
 
 import UIKit
 
-extension UITableView: EXCompatible { }
 public extension EX where T == UITableView {
     
     /// 隐藏多余的线
