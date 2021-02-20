@@ -9,7 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "SwiftToolLibrary",
-            targets: ["SwiftToolLibrary"]),
+            targets: ["Extensions"]),
     ],
     targets: [
         .target(
