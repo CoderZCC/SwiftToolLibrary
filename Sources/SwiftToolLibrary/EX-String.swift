@@ -5,7 +5,6 @@
 //  Created by ZCC on 2021/2/20.
 //
 
-import Foundation
 import UIKit
 
 extension String: EXCompatible { }
@@ -88,7 +87,7 @@ extension EX where T == String {
     ///   - height: 单行高度
     ///   - font: 字体
     /// - Returns: 宽度
-    func boundingWidth(_ height: CGFloat = 16, _ font: UIFont?) -> CGFloat {
+    func boundingWidth(_ height: CGFloat, _ font: UIFont?) -> CGFloat {
         let label = UILabel()
         label.frame = CGRect(x: 0.0, y: 0.0, width: CGFloat(Int.max), height: height)
         label.font = font
