@@ -1,6 +1,6 @@
 # SwiftToolLibrary
 
-SwiftToolLibrary是一款加速swift开发的工具包；
+SwiftToolLibrary是一款加速swift开发的工具包（iOSApp）；
 
 [![Build Status](https://travis-ci.org/SnapKit/SnapKit.svg)](https://github.com/CoderZCC)
 
