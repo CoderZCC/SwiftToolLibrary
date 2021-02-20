@@ -3,12 +3,11 @@
 SwiftToolLibrary是一款加速swift开发的工具包；
 
 [![Build Status](https://travis-ci.org/SnapKit/SnapKit.svg)](https://github.com/CoderZCC)
-[![Platform](https://img.shields.io/cocoapods/p/SnapKit.svg?style=flat)](https://github.com/CoderZCC)
 
 ## Requirements
 
 - iOS 10.0+
-- Xcode 10.0+
+- Xcode 11.0+
 - Swift 5.0+
 
 ## Communication
@@ -23,7 +22,7 @@ SwiftToolLibrary是一款加速swift开发的工具包；
 
 [Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
 
-> Xcode 11+ is required to build SnapKit using Swift Package Manager.
+> Xcode 11+ is required to build SwiftToolLibrary using Swift Package Manager.
 
 To integrate SnapKit into your Xcode project using Swift Package Manager, add it to the dependencies value of your `Package.swift`:
 
@@ -40,7 +39,7 @@ dependencies: [
 ```swift
 import SwiftToolLibrary
 
-class MyViewController: UIViewController {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
