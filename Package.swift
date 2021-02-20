@@ -9,7 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "SwiftToolLibrary",
-            targets: ["SwiftToolLibrary"]),
+            targets: ["Extensions"]),
     ],
     targets: [
         .target(
@@ -17,6 +17,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "SwiftToolLibraryTests",
-            dependencies: ["SwiftToolLibrary"]),
+            dependencies: ["Extensions"]),
     ]
 )
