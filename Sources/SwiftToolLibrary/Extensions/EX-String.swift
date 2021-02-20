@@ -22,12 +22,12 @@ public extension EX where T == String {
     
     /// intValue
     var intValue: Int? {
-        return Int(self)
+        return Int(self.value)
     }
     
     /// 是否包含汉字
     var isContainHan: Bool {
-        for i in self {
+        for i in self.value {
             if "\u{4E00}" <= i && i <= "\u{9FA5}" {
                 return true
             }
