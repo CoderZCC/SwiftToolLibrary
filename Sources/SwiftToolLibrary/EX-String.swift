@@ -8,7 +8,7 @@
 import UIKit
 
 extension String: EXCompatible { }
-extension EX where T == String {
+public extension EX where T == String {
     
     /// 是否为空, 全空格/empty
     ///

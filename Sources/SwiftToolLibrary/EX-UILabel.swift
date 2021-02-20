@@ -8,7 +8,7 @@
 import UIKit
 
 extension UILabel: EXCompatible { }
-extension EX where T == UILabel {
+public extension EX where T == UILabel {
     
     /// 已知文字内容计算文字宽度
     var textWidth: CGFloat? {

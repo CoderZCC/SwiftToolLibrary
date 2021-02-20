@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImage: EXCompatible { }
-extension EX where T == UIImage {
+public extension EX where T == UIImage {
     
     // MARK: - 降低质量
     /// 压缩图片

@@ -8,7 +8,7 @@
 import UIKit
 
 extension UITableView: EXCompatible { }
-extension EX where T == UITableView {
+public extension EX where T == UITableView {
     
     /// 隐藏多余的线
     func hiddeSurplusLine() {

@@ -8,7 +8,7 @@
 import UIKit
 
 extension Int: EXCompatible { }
-extension EX where T == Int {
+public extension EX where T == Int {
     
     /// 16进制数字 转 颜色
     var color: UIColor? {
