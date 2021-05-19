@@ -25,7 +25,11 @@ public extension UIScreen {
         var window: UIWindow?
         if #available(iOS 13.0, *) {
             let scene = UIApplication.shared.connectedScenes.filter({ $0 is UIWindowScene }).first as? UIWindowScene
-            window = scene?.windows.filter({ $0.isKeyWindow }).first
+            if scene?.windows.count == 1 {
+                window = scene?.windows.first
+            } else {
+                window = scene?.windows.filter({ $0.isKeyWindow }).first
+            }
         } else {
             window = UIApplication.shared.delegate?.window ?? nil
         }
