@@ -9,12 +9,12 @@ import Foundation
 
 public struct Asyncs {
     
-    typealias _Task = ()->Void
+    public typealias _Task = ()->Void
     
     /// 主线程操作
     /// - Parameters:
     ///   - mainTask: 主线程执行任务
-    static func asyncOnMain(_ mainTask: @escaping _Task) {
+    public static func asyncOnMain(_ mainTask: @escaping _Task) {
         let item = DispatchWorkItem(block: mainTask)
         DispatchQueue.main.async(execute: item)
     }
@@ -23,7 +23,7 @@ public struct Asyncs {
     /// - Parameters:
     ///   - task: 子线程执行任务
     ///   - mainTask: 主线程执行任务
-    static func async(_ task: @escaping _Task, _ mainTask: _Task? = nil) {
+    public static func async(_ task: @escaping _Task, _ mainTask: _Task? = nil) {
         let item = DispatchWorkItem(block: task)
         DispatchQueue.global().async(execute: item)
         if let m = mainTask {
@@ -37,7 +37,7 @@ public struct Asyncs {
     ///   - mainTask: 需要执行的任务
     /// - Returns: DispatchWorkItem可取消
     @discardableResult
-    static func asyncDelay(_ seconds: TimeInterval, _ mainTask: @escaping _Task) -> DispatchWorkItem {
+    public static func asyncDelay(_ seconds: TimeInterval, _ mainTask: @escaping _Task) -> DispatchWorkItem {
         let item = DispatchWorkItem(block: mainTask)
         if seconds > 0 {
             DispatchQueue.main.asyncAfter(wallDeadline: .now() + seconds, execute: item)
