@@ -19,12 +19,7 @@ public extension EX where T == String {
         }
         return self.value.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty
     }
-    
-    /// intValue
-    var intValue: Int? {
-        return Int(self.value)
-    }
-    
+        
     /// 是否包含汉字
     var isContainHan: Bool {
         for i in self.value {
