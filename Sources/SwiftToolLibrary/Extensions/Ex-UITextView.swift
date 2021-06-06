@@ -61,6 +61,8 @@ private extension UITextView {
             self._placeholderView.frame = self.bounds
             self._placeholderView.backgroundColor = self.backgroundColor
             self._placeholderView.font = self.font
+            let finalText = self.text ?? ""
+            self._placeholderView.isHidden = !finalText.isEmpty
         }
     }
     
