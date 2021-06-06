@@ -9,14 +9,14 @@ import UIKit
 
 public extension UIButton {
     
-    public typealias ButtonTargetClosure = (UIButton)->Void
+    typealias ButtonTargetClosure = (UIButton)->Void
     static private let keyEx: String = "UIButtonAddTargetEx"
     
     /// 添加点击事件
     /// - Parameters:
     ///   - event: UIControl.Event
     ///   - closure: (UIButton)->Void
-    public func addTarget(event: UIControl.Event = .touchUpInside, _ closure: @escaping ButtonTargetClosure) {
+    func addTarget(event: UIControl.Event = .touchUpInside, _ closure: @escaping ButtonTargetClosure) {
         k_setAssociatedObject(key: UIButton.keyEx, value: closure)
         self.addTarget(self, action: #selector(_clickActionEx), for: event)
     }
@@ -29,12 +29,12 @@ public extension UIButton {
 
 public extension UIView {
     
-    public typealias UIViewTapClosure = (UITapGestureRecognizer)->Void
+    typealias UIViewTapClosure = (UITapGestureRecognizer)->Void
     static private let keyEx: String = "UIButtonAddTargetEx"
     
     /// 添加点击事件
     /// - Parameter closure: (UITapGestureRecognizer)->Void
-    public func addTapGesure(_ closure: @escaping UIViewTapClosure) {
+    func addTapGesure(_ closure: @escaping UIViewTapClosure) {
         k_setAssociatedObject(key: UIView.keyEx, value: closure)
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(_tapActionEx))
         tap.delaysTouchesBegan = false
