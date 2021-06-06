@@ -28,13 +28,13 @@ public extension UITextView {
         }
     }
     /// 占位文字
-    var placeholder: (String)->Void {
+    var placeholder: (String?)->Void {
         return { c in
             self._placeholderView.text = c
         }
     }
     /// 占位文字颜色
-    var placeholderColor: (UIColor)->Void {
+    var placeholderColor: (UIColor?)->Void {
         return { c in
             self._placeholderView.textColor = c
         }
@@ -49,11 +49,16 @@ public extension UITextView {
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self._placeholderView.frame = self.bounds
-        self._placeholderView.backgroundColor = self.backgroundColor
-        self._placeholderView.font = self.font
+    override var frame: CGRect {
+        didSet {
+            self._placeholderView.frame = CGRect(origin: .zero, size: self.frame.size)
+        }
+    }
+    
+    override var backgroundColor: UIColor? {
+        didSet {
+            self._placeholderView.backgroundColor = self.backgroundColor
+        }
     }
 }
 
@@ -64,7 +69,7 @@ private extension UITextView {
         if let p = k_getAssociatedObject(key: UITextView.keyEx) as? UITextView {
             return p
         }
-        let placeholderView = UITextView()
+        let placeholderView = UITextView(frame: self.bounds)
         placeholderView.isUserInteractionEnabled = false
         self.insertSubview(placeholderView, at: 0)
         k_setAssociatedObject(key: UITextView.keyEx, value: placeholderView)
