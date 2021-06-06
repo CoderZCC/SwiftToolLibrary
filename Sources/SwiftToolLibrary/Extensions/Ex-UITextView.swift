@@ -53,9 +53,15 @@ public extension UITextView {
 private extension UITextView {
     
     func _updateTextView() {
-        self._placeholderView.frame = self.bounds
-        self._placeholderView.backgroundColor = self.backgroundColor
-
+        if self.frame == CGRect.zero {
+            Asyncs.asyncDelay(0.2) {
+                self._updateTextView()
+            }
+        } else {
+            self._placeholderView.frame = self.bounds
+            self._placeholderView.backgroundColor = self.backgroundColor
+            self._placeholderView.font = self.font
+        }
     }
     
     static let keyEx: String = "UITextViewPlaceholderkeyEx"
@@ -70,6 +76,8 @@ private extension UITextView {
         k_setAssociatedObject(key: UITextView.keyEx, value: placeholderView)
         // 添加通知
         NotificationCenter.default.addObserver(self, selector: #selector(_textChangeNoteEx), name: UITextView.textDidChangeNotification, object: nil)
+        self._updateTextView()
+        
         return placeholderView
     }
     
