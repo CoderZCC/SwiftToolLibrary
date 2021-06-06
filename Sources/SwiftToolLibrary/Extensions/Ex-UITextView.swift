@@ -12,19 +12,19 @@ public extension UITextView {
     /// 最多文字数 英文-1 汉字-1
     var maxTextLength: Int? {
         set {
-            k_setAssociatedObject(key: "maxTextLength", value: newValue)
+            k_setAssociatedObject(key: "maxTextLengthEx", value: newValue)
         }
         get {
-            k_getAssociatedObject(key: "maxTextLength") as? Int
+            k_getAssociatedObject(key: "maxTextLengthEx") as? Int
         }
     }
     /// 最大字节数 英文-1 汉字-2
     var maxTextByte: Int? {
         set {
-            k_setAssociatedObject(key: "maxTextByte", value: newValue)
+            k_setAssociatedObject(key: "maxTextByteEx", value: newValue)
         }
         get {
-            k_getAssociatedObject(key: "maxTextByte") as? Int
+            k_getAssociatedObject(key: "maxTextByteEx") as? Int
         }
     }
     /// 占位文字
@@ -48,29 +48,24 @@ public extension UITextView {
             self._placeholderView.typingAttributes = self.typingAttributes
         }
     }
-    
-    override var frame: CGRect {
-        didSet {
-            self._placeholderView.frame = CGRect(origin: .zero, size: self.frame.size)
-        }
-    }
-    
-    override var backgroundColor: UIColor? {
-        didSet {
-            self._placeholderView.backgroundColor = self.backgroundColor
-        }
-    }
 }
 
 private extension UITextView {
+    
+    func _updateTextView() {
+        self._placeholderView.frame = self.bounds
+        self._placeholderView.backgroundColor = self.backgroundColor
+
+    }
     
     static let keyEx: String = "UITextViewPlaceholderkeyEx"
     var _placeholderView: UITextView {
         if let p = k_getAssociatedObject(key: UITextView.keyEx) as? UITextView {
             return p
         }
-        let placeholderView = UITextView(frame: self.bounds)
+        let placeholderView = UITextView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
         placeholderView.isUserInteractionEnabled = false
+        placeholderView.isScrollEnabled = false
         self.insertSubview(placeholderView, at: 0)
         k_setAssociatedObject(key: UITextView.keyEx, value: placeholderView)
         // 添加通知
