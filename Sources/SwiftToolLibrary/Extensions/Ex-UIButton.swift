@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIButton {
+public extension UIButton {
     
     public typealias ButtonTargetClosure = (UIButton)->Void
     static private let keyEx: String = "UIButtonAddTargetEx"
@@ -27,7 +27,7 @@ extension UIButton {
     }
 }
 
-extension UIView {
+public extension UIView {
     
     public typealias UIViewTapClosure = (UITapGestureRecognizer)->Void
     static private let keyEx: String = "UIButtonAddTargetEx"

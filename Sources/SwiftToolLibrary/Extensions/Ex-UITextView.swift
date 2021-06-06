@@ -12,7 +12,6 @@ public extension UITextView {
     /// 最多文字数 英文-1 汉字-1
     var maxTextLength: Int? {
         set {
-            self.maxTextByte = nil
             k_setAssociatedObject(key: "maxTextLength", value: newValue)
         }
         get {
@@ -22,7 +21,6 @@ public extension UITextView {
     /// 最大字节数 英文-1 汉字-2
     var maxTextByte: Int? {
         set {
-            self.maxTextLength = nil
             k_setAssociatedObject(key: "maxTextByte", value: newValue)
         }
         get {
