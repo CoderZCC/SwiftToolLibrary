@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+/*
 public extension UITextView {
 
     /// 最多文字数 英文-1 汉字-1
@@ -98,3 +98,4 @@ private extension UITextView {
         }
     }
 }
+*/
