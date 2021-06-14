@@ -8,7 +8,7 @@
 import Foundation
 
 public enum NetworkMethodEnum: String {
-    case get = "GET", post = "POST"
+    case get = "GET", post = "POST", delete = "DELETE"
 }
 
 public protocol NetworkProtocol {
@@ -45,7 +45,7 @@ public extension NetworkProtocol {
             } else {
                 request = self._createURLRequest(url)
             }
-        case .post:
+        case .post, .delete:
             request = self._createURLRequest(url)
             if let body = body {
                 request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
