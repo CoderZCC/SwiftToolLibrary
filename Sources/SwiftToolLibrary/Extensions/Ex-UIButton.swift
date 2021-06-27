@@ -36,6 +36,7 @@ public extension UIView {
     /// - Parameter closure: (UITapGestureRecognizer)->Void
     func addTapGesure(_ closure: @escaping UIViewTapClosure) {
         k_setAssociatedObject(key: UIView.keyEx, value: closure)
+        self.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(_tapActionEx))
         tap.delaysTouchesBegan = false
         tap.delaysTouchesEnded = false

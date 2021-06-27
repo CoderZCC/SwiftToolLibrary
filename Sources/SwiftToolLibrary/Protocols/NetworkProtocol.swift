@@ -18,7 +18,8 @@ public protocol NetworkProtocol {
     
     /// eg. user/login
     var path: String { get }
-    var body: [String: Any]? { get }
+    var bodyDict: [String: Any]? { get }
+    var bodyData: Data? { get }
     var header: [String: String]? { get }
     var method: NetworkMethodEnum { get }
 }
@@ -31,12 +32,19 @@ public extension NetworkProtocol {
             fatalError("path can not be a URL")
         }
         var request: URLRequest
-        let body = self.body
         let method = self.method
         switch method {
         case .get:
-            if let body = body {
-                let deal = body.compactMap({ "\($0.key)=\($0.value)" }).joined(separator: "&")
+            let dict: [String: Any]?
+            if let bodyDict = self.bodyDict {
+                dict = bodyDict
+            } else if let body = self.bodyData, let bodyDict = try? JSONSerialization.jsonObject(with: body, options: .allowFragments) as? [String: Any] {
+                dict = bodyDict
+            } else {
+                dict = nil
+            }
+            if let dict = dict, !dict.isEmpty {
+                let deal = dict.compactMap({ "\($0.key)=\($0.value)" }).joined(separator: "&")
                 baseUrl += baseUrl.hasSuffix("?") ? "&\(deal)" : "?\(deal)"
                 guard let newUrl = URL(string: baseUrl) else {
                     fatalError("path can not be a URL")
@@ -47,8 +55,10 @@ public extension NetworkProtocol {
             }
         case .post, .delete:
             request = self._createURLRequest(url)
-            if let body = body {
+            if let body = self.bodyDict {
                 request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
+            } else if let body = self.bodyData {
+                request.httpBody = body
             }
         }
         request.httpMethod = method.rawValue

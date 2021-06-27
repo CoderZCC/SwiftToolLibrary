@@ -19,7 +19,7 @@ public extension EX where T == String {
         }
         return self.value.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty
     }
-        
+    
     /// 是否包含汉字
     var isContainHan: Bool {
         for i in self.value {
@@ -103,9 +103,9 @@ public extension EX where T == String {
     ///   - height: 单行高度
     ///   - font: 字体
     /// - Returns: 宽度
-    func boundingWidth(_ height: CGFloat, _ font: UIFont?) -> CGFloat {
+    func boundingWidth(_ maxHeight: CGFloat, _ font: UIFont?) -> CGFloat {
         let label = UILabel()
-        label.frame = CGRect(x: 0.0, y: 0.0, width: CGFloat(Int.max), height: height)
+        label.frame = CGRect(x: 0.0, y: 0.0, width: CGFloat(Int.max), height: maxHeight)
         label.font = font
         label.text = self.value
         label.sizeToFit()
