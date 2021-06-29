@@ -16,8 +16,8 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SwiftToolLibrary"
-  spec.version      = "1.1.4"
-  spec.summary      = "A short description of SwiftToolLibrary."
+  spec.version      = "1.1.5"
+  spec.summary      = "SwiftToolLibrary"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,6 +25,7 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
+                    SwiftToolLibrary是一款加速swift开发的工具包（iOSApp）；
                    DESC
 
   spec.homepage     = "https://github.com/CoderZCC/SwiftToolLibrary.git"
@@ -52,10 +53,10 @@ Pod::Spec.new do |spec|
   #  profile URL.
   #
 
-  spec.author             = { "zhangchongchao" => "coderzcc@163.com" }
-  # Or just: spec.author    = "zhangchongchao"
-  # spec.authors            = { "zhangchongchao" => "chongchao.zhang@matrx.team" }
-  # spec.social_media_url   = "https://twitter.com/zhangchongchao"
+  spec.author             = { "zcc" => "coderzcc@163.com" }
+  # Or just: spec.author    = "zcc"
+  # spec.authors            = { "zcc" => "coderzcc@163.com" }
+  # spec.social_media_url   = "https://twitter.com/zcc"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -65,6 +66,7 @@ Pod::Spec.new do |spec|
 
   # spec.platform     = :ios
   spec.platform     = :ios, "10.0"
+  spec.swift_version = "5.0"
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
@@ -118,7 +120,7 @@ Pod::Spec.new do |spec|
   #  the lib prefix of their name.
   #
 
-  spec.framework  = "UIKit", "Foundation", "WidgetKit"
+  spec.frameworks  = "UIKit", "Foundation"
   # spec.frameworks = "SomeFramework", "AnotherFramework"
 
   # spec.library   = "iconv"

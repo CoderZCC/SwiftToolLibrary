@@ -15,14 +15,14 @@ struct SwiftTool {
     }
 }
 
-import WidgetKit
-extension SwiftTool {
-    
-    static func reloadWidget() {
-        if #available(iOS 14.0, *) {
-            #if arch(arm64) || arch(i386) || arch(x86_64)
-            WidgetCenter.shared.reloadAllTimelines()
-            #endif
-        }
-    }
-}
+//import WidgetKit
+//extension SwiftTool {
+//
+//    static func reloadWidget() {
+//        if #available(iOS 14.0, *) {
+//            #if arch(arm64) || arch(i386) || arch(x86_64)
+//            WidgetCenter.shared.reloadAllTimelines()
+//            #endif
+//        }
+//    }
+//}
