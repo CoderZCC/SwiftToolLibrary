@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SwiftToolLibrary"
-  spec.version      = "1.1.5"
+  spec.version      = "1.1.6"
   spec.summary      = "SwiftToolLibrary"
 
   # This description is used to generate tags and improve search results.
@@ -93,7 +93,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.source_files  = "Classes", "Classes/**/*.{h,m}"
-  spec.source_files  = "Sources", "Sources/SwiftToolLibrary/**/*.{swift}"
+  spec.source_files  = "Sources", "Sources/**/*.{swift}"
   spec.exclude_files = "Classes/Exclude"
 
 
