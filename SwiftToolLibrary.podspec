@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SwiftToolLibrary"
-  spec.version      = "0.0.1"
+  spec.version      = "1.1.4"
   spec.summary      = "A short description of SwiftToolLibrary."
 
   # This description is used to generate tags and improve search results.
