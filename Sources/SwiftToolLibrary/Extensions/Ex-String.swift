@@ -143,3 +143,10 @@ public extension EX where T == String {
         return newStr
     }
 }
+
+public extension EX where T == String {
+    
+    func nibView <T>(with cls: T.Type) -> T! {
+        Bundle.main.loadNibNamed(self.value, owner: nil, options: nil)?.first as? T
+    }
+}
