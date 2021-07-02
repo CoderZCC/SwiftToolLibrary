@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Example-iOS
+//  SwiftToolLibrary-Demo
 //
-//  Created by CC Z on 2021/5/31.
+//  Created by CC Z on 2021/7/2.
 //
 
 import UIKit
@@ -13,12 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = UIColor.black
-        let rootVC = ViewController()
-        self.window?.rootViewController = rootVC
-        self.window?.makeKeyAndVisible()
+        // Override point for customization after application launch.
         return true
     }
+
+
 }
 
