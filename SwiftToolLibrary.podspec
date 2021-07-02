@@ -9,7 +9,6 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/CoderZCC/SwiftToolLibrary"
-  s.screenshots  = ""
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
