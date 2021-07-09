@@ -14,7 +14,7 @@ public struct EX<T> {
 public protocol EXCompatible { }
 extension EXCompatible {
     public var ex: EX<Self> {
-        set {}
+        set { }
         get { EX(value: self) }
     }
 }

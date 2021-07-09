@@ -6,16 +6,18 @@
 //
 
 import UIKit
-import SwiftToolLibrary
+//import SwiftToolLibrary
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("zcc".ex.byteCount)
+//        print("zcc".ex.byteCount)
+        
     }
 
-
+    @IBOutlet weak var _btn: UIButton!
+    
 }
 
