@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImage: EXCompatible { }
-public extension EX where T == UIImage {
+public extension EX where T: UIImage {
     
     // MARK: - 降低质量
     /// 压缩图片
@@ -120,7 +120,7 @@ public extension EX where T == UIImage {
 }
 
 
-public extension EX where T == UIImage {
+public extension EX where T: UIImage {
     
     /// 调整图片分辨率/尺寸（等比例缩放）
     ///
@@ -158,7 +158,7 @@ public extension EX where T == UIImage {
     }
 }
 
-public extension EX where T == UIImage {
+public extension EX where T: UIImage {
     
     /// 裁剪指定区域 按照图片原始尺寸裁剪
     /// - Parameter rect: CGRect

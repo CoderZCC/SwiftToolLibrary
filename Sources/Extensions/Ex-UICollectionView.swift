@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension EX where T == UICollectionView {
+public extension EX where T: UICollectionView {
     
     //MARK: 注册单元格 使用类名作为标记符
     /// 注册单元格 使用类名作为标记符
