@@ -34,16 +34,34 @@ public class UITextPlaceholderView: UITextView {
             self._placeholder.typingAttributes = self.typingAttributes
         }
     }
-    
+    /// 富文本内容
+    public override var attributedText: NSAttributedString! {
+        willSet {
+            guard let inputText = newValue else { return }
+            self._placeholder.isHidden = !inputText.string.isEmpty
+        }
+    }
+    /// 输入内容
+    public override var text: String! {
+        willSet {
+            guard let inputText = newValue else { return }
+            self._placeholder.isHidden = !inputText.isEmpty
+        }
+    }
     public override var textColor: UIColor? {
         willSet {
             self.tintColor = newValue
         }
     }
-    
     public override func layoutSubviews() {
         super.layoutSubviews()
         self._updateTextView()
+    }
+    
+    /// 重写光标尺寸
+    public override func caretRect(for position: UITextPosition) -> CGRect {
+        let originalRect = super.caretRect(for: position)
+        return originalRect
     }
     
     private lazy var _placeholder: UITextView = {
