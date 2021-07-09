@@ -7,47 +7,25 @@
 
 import UIKit
 
-//public extension EX where T == UIButton {
-//
-//    typealias ButtonTargetClosure = (UIButton)->Void
-////    static private let keyEx: String = "UIButtonAddTargetEx"
-//
-//    /// 添加点击事件
-//    /// - Parameters:
-//    ///   - event: UIControl.Event
-//    ///   - closure: (UIButton)->Void
-//    func addTarget(event: UIControl.Event = .touchUpInside, _ closure: @escaping ButtonTargetClosure) {
-//        self.value.addTarget(ClickManager.default, action: #selector(ClickManager.default.clickAction(_:)), for: event)
-////        k_setAssociatedObject(key: UIButton.keyEx, value: closure)
-////        self.addTarget(self, action: #selector(_clickActionEx), for: event)
-//    }
-//
-////    @objc private func _clickActionEx(_ sender: UIButton) {
-////        guard let closure = k_getAssociatedObject(key: UIButton.keyEx) as? ButtonTargetClosure else { return }
-////        closure(sender)
-////    }
-//}
+public extension UIButton {
 
+    typealias ButtonTargetClosure = (UIButton)->Void
+    static private let keyEx: String = "UIButtonAddTargetEx"
 
-//public extension UIButton {
-//
-//    typealias ButtonTargetClosure = (UIButton)->Void
-//    static private let keyEx: String = "UIButtonAddTargetEx"
-//
-//    /// 添加点击事件
-//    /// - Parameters:
-//    ///   - event: UIControl.Event
-//    ///   - closure: (UIButton)->Void
-//    func addTarget(event: UIControl.Event = .touchUpInside, _ closure: @escaping ButtonTargetClosure) {
-//        k_setAssociatedObject(key: UIButton.keyEx, value: closure)
-//        self.addTarget(self, action: #selector(_clickActionEx), for: event)
-//    }
-//
-//    @objc private func _clickActionEx(_ sender: UIButton) {
-//        guard let closure = k_getAssociatedObject(key: UIButton.keyEx) as? ButtonTargetClosure else { return }
-//        closure(sender)
-//    }
-//}
+    /// 添加点击事件
+    /// - Parameters:
+    ///   - event: UIControl.Event
+    ///   - closure: (UIButton)->Void
+    func addTarget(event: UIControl.Event = .touchUpInside, _ closure: @escaping ButtonTargetClosure) {
+        k_setAssociatedObject(key: UIButton.keyEx, value: closure)
+        self.addTarget(self, action: #selector(_clickActionEx), for: event)
+    }
+
+    @objc private func _clickActionEx(_ sender: UIButton) {
+        guard let closure = k_getAssociatedObject(key: UIButton.keyEx) as? ButtonTargetClosure else { return }
+        closure(sender)
+    }
+}
 
 public extension UIView {
     

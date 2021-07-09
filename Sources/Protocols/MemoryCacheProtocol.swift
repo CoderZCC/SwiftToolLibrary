@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 内存存储
 public protocol MemoryCacheProtocol { }
 public extension MemoryCacheProtocol {
     

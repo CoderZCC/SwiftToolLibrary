@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 异步工具
 public struct Asyncs {
     
     public typealias _Task = ()->Void

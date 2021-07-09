@@ -42,6 +42,13 @@ public extension EX where T == Int {
     func strValue(_ formart: String = "%.2f") -> String {
         String(format: formart, self.value)
     }
+    
+    /// 标准化 为 KM/MB/...
+    var size: String {
+        let formatter = ByteCountFormatter.init()
+        formatter.countStyle = .file
+        return formatter.string(fromByteCount: Int64(self.value))
+    }
 }
 
 extension CGFloat: EXCompatible { }

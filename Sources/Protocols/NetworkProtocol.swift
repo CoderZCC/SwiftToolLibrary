@@ -11,6 +11,7 @@ public enum NetworkMethodEnum: String {
     case get = "GET", post = "POST", delete = "DELETE"
 }
 
+/// 网络请求
 public protocol NetworkProtocol {
     /// eg. https://127.0.0.1/
     var httpPrefix: String { get }

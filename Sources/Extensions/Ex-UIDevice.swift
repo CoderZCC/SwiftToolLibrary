@@ -31,7 +31,7 @@ public extension EX where T == UIDevice {
         case "iPhone3,1", "iPhone3,2", "iPhone3,3":  return "iPhone 4"
         case "iPhone4,1":  return "iPhone 4s"
         case "iPhone5,1":   return "iPhone 5"
-        case  "iPhone5,2":  return "iPhone 5 (GSM+CDMA)"
+        case "iPhone5,2":  return "iPhone 5 (GSM+CDMA)"
         case "iPhone5,3":  return "iPhone 5c (GSM)"
         case "iPhone5,4":  return "iPhone 5c (GSM+CDMA)"
         case "iPhone6,1":  return "iPhone 5s (GSM)"
