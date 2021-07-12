@@ -27,7 +27,7 @@ extension ViewController {
     func _testTextView() {
         let textView = UITextPlaceholderView(frame: CGRect(x: 10, y: 20, width: 300, height: 200))
         textView.backgroundColor = UIColor.white
-        textView.placeholder("我是展位文字")
+        textView.placeholder("我是占位文字")
         textView.placeholderColor(UIColor.darkGray)
         textView.textColor = UIColor.black
         textView.font = UIFont.systemFont(ofSize: 16)
