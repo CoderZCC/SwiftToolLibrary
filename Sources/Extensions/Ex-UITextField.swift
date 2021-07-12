@@ -24,11 +24,10 @@ public extension EX where T: UITextField {
     /// 最多文字数 英文-1 汉字-1 仅一个有效
     var maxTextLength: (Int)->Void {
         return { count in
-            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: nil, queue: OperationQueue.main) { (note) in
-                let tf = note.object as? UITextField
-                guard let input = tf?.text else { return }
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: nil, queue: OperationQueue.main) { (_) in
+                guard let input = self.value.text else { return }
                 if input.count > count {
-                    tf?.text = tf?.text?.ex.sub(to: count)
+                    self.value.text = self.value.text?.ex.sub(to: count)
                 }
             }
         }
@@ -36,11 +35,10 @@ public extension EX where T: UITextField {
     /// 最大字节数 英文-1 汉字-2 仅一个有效
     var maxTextByte: (Int)->Void {
         return { count in
-            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: nil, queue: OperationQueue.main) { (note) in
-                let tf = note.object as? UITextField
-                guard let input = tf?.text else { return }
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: nil, queue: OperationQueue.main) { (_) in
+                guard let input = self.value.text else { return }
                 if input.ex.byteCount > count {
-                    tf?.text = tf?.text?.ex.subByByte(to: count)
+                    self.value.text = self.value.text?.ex.subByByte(to: count)
                 }
             }
         }
