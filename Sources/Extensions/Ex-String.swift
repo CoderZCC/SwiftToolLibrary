@@ -10,6 +10,11 @@ import UIKit
 extension String: EXCompatible { }
 public extension EX where T == String {
     
+    /// url编码
+    var urlEncoded: String {
+        self.value.removingPercentEncoding?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? self.value
+    }
+    
     /// 是否为空, 全空格/empty
     ///
     /// - Returns: 是否
@@ -141,12 +146,5 @@ public extension EX where T == String {
             fatalError("范围不正确")
         }
         return newStr
-    }
-}
-
-public extension EX where T == String {
-    
-    func nibView <T>(with cls: T.Type) -> T! {
-        Bundle.main.loadNibNamed(self.value, owner: nil, options: nil)?.first as? T
     }
 }
