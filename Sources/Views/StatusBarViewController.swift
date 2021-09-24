@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: -电池条基类
-public class StatusBarViewController: UIViewController {
+open class StatusBarViewController: UIViewController {
 
     public enum StatusBarEnum {
         case light, dark

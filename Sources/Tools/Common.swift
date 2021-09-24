@@ -15,17 +15,13 @@ public let kScreenHeight: CGFloat = UIScreen.main.bounds.height
 public let kScreenSize: CGSize = UIScreen.main.bounds.size
 
 /// 顶部安全区域 最小20
-@available(iOS 11.0, *)
 public let kTopSafeH: CGFloat = (kCurrentWindow?.safeAreaInsets.top ?? 0) > 20 ? (kCurrentWindow?.safeAreaInsets.top ?? 0) : 20
 /// 低部安全区域 最小0
-@available(iOS 11.0, *)
 public let kBottomSafeH: CGFloat = kCurrentWindow?.safeAreaInsets.bottom ?? 0
 
 /// 导航栏高度
-@available(iOS 11.0, *)
 public let kNavBarHeight: CGFloat = kTopSafeH + 44
 /// 标签栏高度
-@available(iOS 11.0, *)
 public let kTabBarHeight: CGFloat = kBottomSafeH + 49
 
 /// 当前活跃的窗口

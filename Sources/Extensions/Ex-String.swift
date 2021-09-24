@@ -12,7 +12,7 @@ public extension EX where T == String {
     
     /// url编码
     var urlEncoded: String {
-        self.value.removingPercentEncoding?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? self.value
+        NSString(string: self.value).addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: "!@#$^*+,;'\"`<>()[]{}| ").inverted) ?? self.value
     }
     
     /// 是否为空, 全空格/empty
@@ -35,12 +35,12 @@ public extension EX where T == String {
         return false
     }
     
-//    /// 是否符合密码规则 6-16位
-//    var isPassword: Bool {
-//        let psd = "^\\S{6,16}$"
-//        let predicate = NSPredicate(format: "SELF MATCHES %@", psd)
-//        return predicate.evaluate(with: self.value)
-//    }
+    /// 是否符合密码规则 6-16位
+    var isPassword: Bool {
+        let psd = "^\\S{6,16}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", psd)
+        return predicate.evaluate(with: self.value)
+    }
     
     /// 是否全是数字
     var isNumer: Bool {

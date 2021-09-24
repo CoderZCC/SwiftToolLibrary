@@ -15,10 +15,10 @@ Pod::Spec.new do |s|
   s.authors            = { "coderzcc" => "coderzcc@163.com" }
   s.social_media_url   = "https://github.com/CoderZCC"
 
-  s.platform = :ios, "10.0"
+  s.platform = :ios, "11.0"
   s.swift_versions = ["5.0"]
 
-  s.ios.deployment_target = "10.0"
+  s.ios.deployment_target = "11.0"
 
   s.source       = { :git => "https://github.com/CoderZCC/SwiftToolLibrary.git", :tag => s.version }
   s.source_files  = ["Sources/**/*.swift"]

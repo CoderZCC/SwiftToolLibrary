@@ -8,7 +8,7 @@
 import Foundation
 
 /// 异步工具
-public struct Asyncs {
+public enum Asyncs {
     
     public typealias _Task = ()->Void
     

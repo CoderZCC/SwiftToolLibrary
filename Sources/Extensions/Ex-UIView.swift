@@ -16,18 +16,21 @@ public extension EX where T: UIView {
     /// - Parameters:
     ///   - corners: 位置
     ///   - radii: 圆角
-    func setCorner(byRoundingCorners corners: UIRectCorner, radii: CGFloat) {
-        if self.value.bounds == CGRect.zero {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.setCorner(byRoundingCorners: corners, radii: radii)
-            }
-        } else {
-            if self.value.layer.mask != nil { return }
-            let maskPath = UIBezierPath(roundedRect: CGRect.init(x: 0.0, y: 0.0, width: self.value.bounds.width, height: self.value.bounds.height), byRoundingCorners: corners, cornerRadii: CGSize(width: radii, height: radii))
+    func setCorner(byRoundingCorners corners: UIRectCorner, radii: CGFloat, size: CGSize? = nil) {
+        if let size = size, size != .zero {
+            self.value.layer.mask?.removeFromSuperlayer()
+            let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+            let maskPath = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radii, height: radii))
             let maskLayer = CAShapeLayer()
-            maskLayer.frame = CGRect(x: 0.0, y: 0.0, width: self.value.bounds.width, height: self.value.bounds.height)
+            maskLayer.frame = rect
             maskLayer.path = maskPath.cgPath
             self.value.layer.mask = maskLayer
+        } else if self.value.bounds.size != .zero {
+            self.setCorner(byRoundingCorners: corners, radii: radii, size: self.value.bounds.size)
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.setCorner(byRoundingCorners: corners, radii: radii, size: size)
+            }
         }
     }
 }

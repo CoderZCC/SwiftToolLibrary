@@ -7,10 +7,10 @@
 
 import UIKit
 
-public struct SwiftTool {
-    
+public enum SwiftTool { }
+public extension SwiftTool {
     /// 震感反馈
-    public static func shake(_ style: UIImpactFeedbackGenerator.FeedbackStyle = .medium) {
+    static func shake(_ style: UIImpactFeedbackGenerator.FeedbackStyle = .medium) {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
     }
 }

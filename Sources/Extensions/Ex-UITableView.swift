@@ -14,6 +14,24 @@ public extension EX where T: UITableView {
         self.value.tableFooterView = UIView()
     }
     
+    /// 自动计算行高
+    func autoJudgeCellHeight() {
+        self.value.rowHeight = UITableView.automaticDimension
+        self.value.estimatedRowHeight = 0.1
+    }
+    
+    /// 自动计算头
+    func autoJudgeSectionHeaderHeight() {
+        self.value.sectionHeaderHeight = UITableView.automaticDimension
+        self.value.estimatedSectionHeaderHeight = 0.1
+    }
+    
+    /// 自动计算尾
+    func autoJudgeSectionFooterHeight() {
+        self.value.sectionFooterHeight = UITableView.automaticDimension
+        self.value.estimatedSectionFooterHeight = 0.1
+    }
+    
     /// 注册单元格 使用类名作为标记符
     ///
     /// - Parameter cls: 单元格

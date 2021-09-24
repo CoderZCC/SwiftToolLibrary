@@ -10,115 +10,58 @@ import UIKit
 extension UIImage: EXCompatible { }
 public extension EX where T: UIImage {
     
-    // MARK: - 降低质量
     /// 压缩图片
-    ///
-    /// - Parameters:
-    ///   - size: 新尺寸
-    ///   - maxSize: 最大kb
-    /// - Returns: 数据流
-    func compress(size: CGSize? = nil, maxKbSize: Int) -> Data? {
-        let cropImage: UIImage
-        if let size = size, size != CGSize.zero {
-            cropImage = self.resizeScaleToFit(with: size)
-        } else {
-            cropImage = self.value
-        }
-        //先判断当前质量是否满足要求，不满足再进行压缩
-        var finallImageData = cropImage.pngData() ?? cropImage.jpegData(compressionQuality: 1.0)
-        guard let sizeOrigin = finallImageData?.count else { return nil }
-        let sizeOriginKB = sizeOrigin / 1024
-        if sizeOriginKB <= maxKbSize {
-            return finallImageData
-        }
+    /// - Parameter maxLength: kb
+    /// - Returns: 新图
+    func compressImage(toKb size: Int) -> UIImage {
+        let num: Int = 1000
+        let maxLength: Int = size * num
+        var compression: CGFloat = 1
+        guard var data = self.value.jpegData(compressionQuality: compression) ?? self.value.pngData(),
+            data.count > maxLength else { return self.value }
+        debugPrint("<====")
+        debugPrint("Before compressing quality, image size =", data.count / num, "KB")
         
-        //获取原图片宽高比
-        let sourceImageAspectRatio = cropImage.size.width / cropImage.size.height
-        //先调整分辨率
-        var defaultSize = size ?? CGSize(width: 500, height: 500 / sourceImageAspectRatio)
-        var newImage: UIImage!
-        if size == nil {
-            newImage = cropImage.ex.resizeScaleToFit(with: defaultSize)
-        } else {
-            newImage = cropImage
-        }
-        
-        finallImageData = newImage.jpegData(compressionQuality: 1.0)
-        
-        //保存压缩系数
-        let compressionQualityArr = NSMutableArray()
-        let avg = CGFloat(1.0 / 250)
-        var value = avg
-        
-        var i = 250
-        repeat {
-            i -= 1
-            value = CGFloat(i) * avg
-            compressionQualityArr.add(value)
-        } while i >= 1
-        
-        /*
-         调整大小
-         说明：压缩系数数组compressionQualityArr是从大到小存储。
-         */
-        //思路：使用二分法搜索
-        finallImageData = newImage.ex._halfFuntion(arr: compressionQualityArr.copy() as! [CGFloat], sourceData: finallImageData!, maxSize: maxKbSize)
-        //如果还是未能压缩到指定大小，则进行降分辨率
-        while finallImageData?.count == 0 {
-            //每次降100分辨率
-            let reduceWidth = 100.0
-            let reduceHeight = 100.0 / sourceImageAspectRatio
-            if (defaultSize.width - CGFloat(reduceWidth)) <= 0 || (defaultSize.height - CGFloat(reduceHeight)) <= 0 {
-                break
-            }
-            defaultSize = CGSize(width: (defaultSize.width-CGFloat(reduceWidth)), height: (defaultSize.height-CGFloat(reduceHeight)))
-            let image = UIImage.init(data: newImage.jpegData(compressionQuality: compressionQualityArr.lastObject as! CGFloat)!)!.ex.resizeScaleToFit(with: defaultSize)
-            
-            finallImageData = image.ex._halfFuntion(arr: compressionQualityArr.copy() as! [CGFloat], sourceData: image.jpegData(compressionQuality: 1.0)!, maxSize: maxKbSize)
-        }
-        
-        return finallImageData
-    }
-        
-    // MARK: - 二分法
-    private func _halfFuntion(arr: [CGFloat], sourceData finallImageData: Data, maxSize: Int) -> Data? {
-        var tempFinallImageData = finallImageData
-        
-        var tempData = Data.init()
-        var start = 0
-        var end = arr.count - 1
-        var index = 0
-        
-        var difference = Int.max
-        while start <= end {
-            index = start + (end - start) / 2
-            
-            tempFinallImageData = self.value.jpegData(compressionQuality: arr[index])!
-            
-            let sizeOrigin = tempFinallImageData.count
-            let sizeOriginKB = sizeOrigin / 1024
-            
-            print("当前降到的质量：\(sizeOriginKB)\n\(index)----\(arr[index])")
-            
-            if sizeOriginKB > maxSize {
-                start = index + 1
-            } else if sizeOriginKB < maxSize {
-                if maxSize - sizeOriginKB < difference {
-                    difference = maxSize - sizeOriginKB
-                    tempData = tempFinallImageData
-                }
-                if index <= 0 {
-                    break
-                }
-                end = index - 1
+        // Compress by size
+        var max: CGFloat = 1
+        var min: CGFloat = 0
+        for _ in 0..<6 {
+            compression = (max + min) / 2
+            data = self.value.jpegData(compressionQuality: compression)!
+            debugPrint("[compress]: Compression =", compression)
+            debugPrint("[compress]: In compressing quality loop, image size =", data.count / num, "KB")
+            if CGFloat(data.count) < CGFloat(maxLength) * 0.9 {
+                min = compression
+            } else if data.count > maxLength {
+                max = compression
             } else {
                 break
             }
         }
-        return tempData
+        debugPrint("[compress]: After compressing quality, image size =", data.count / num, "KB")
+        var resultImage: UIImage = UIImage(data: data)!
+        if data.count < maxLength { return resultImage }
+        
+        // Compress by size
+        var lastDataLength: Int = 0
+        while data.count > maxLength, data.count != lastDataLength {
+            lastDataLength = data.count
+            let ratio: CGFloat = CGFloat(maxLength) / CGFloat(data.count)
+            debugPrint("[compress]: Ratio =", ratio)
+            let size: CGSize = CGSize(width: Int(resultImage.size.width * sqrt(ratio)),
+                                      height: Int(resultImage.size.height * sqrt(ratio)))
+            UIGraphicsBeginImageContext(size)
+            resultImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            resultImage = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            data = resultImage.jpegData(compressionQuality: compression)!
+            debugPrint("[compress]: In compressing size loop, image size =", data.count / num, "KB")
+        }
+        debugPrint("[compress]: After compressing size loop, image size =", data.count / num, "KB")
+        debugPrint("====>")
+        return resultImage
     }
 }
-
 
 public extension EX where T: UIImage {
     

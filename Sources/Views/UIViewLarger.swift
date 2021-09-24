@@ -8,7 +8,7 @@
 import UIKit
 
 /// 扩大点击区域
-public class UIViewLarger: UIView {
+open class UIViewLarger: UIView {
     
     /// 扩大点击区域 默认是 (10, 10) 向四周扩展10pt
     public var offset: CGSize = CGSize(width: 10, height: 10)
@@ -20,7 +20,7 @@ public class UIViewLarger: UIView {
 }
 
 /// 按钮点击扩大 四周10pt
-public class UIButtonLarger: UIButton {
+open class UIButtonLarger: UIButton {
     
     /// 扩大点击区域 默认是 (10, 10) 向四周扩展10pt
     public var offset: CGSize = CGSize(width: 10, height: 10)

@@ -8,7 +8,7 @@
 import UIKit
 
 /// 带有展位文字的TextView
-public class UITextPlaceholderView: UITextView {
+open class UITextPlaceholderView: UITextView {
     /// 最多文字数 英文-1 汉字-1
     public var maxTextLength: Int?
     /// 最大字节数 英文-1 汉字-2
