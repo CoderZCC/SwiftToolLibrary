@@ -14,23 +14,18 @@ open class StatusBarViewController: UIViewController {
         case light, dark
     }
     
-    public var isHiddenStausBar: Bool = false {
+    open var isHiddenStausBar: Bool = false {
         didSet {
             super.setNeedsStatusBarAppearanceUpdate()
         }
     }
-    public var statusBarStyle: StatusBarEnum = .dark {
+    open var statusBarStyle: StatusBarEnum = .dark {
         didSet {
             super.setNeedsStatusBarAppearanceUpdate()
         }
     }
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        self.statusBarStyle = .dark
-    }
-    
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
         if self.statusBarStyle == .light {
             return .lightContent
         } else if self.statusBarStyle == .dark, #available(iOS 13.0, *) {
@@ -38,7 +33,7 @@ open class StatusBarViewController: UIViewController {
         }
         return .default
     }
-    public override var prefersStatusBarHidden: Bool {
+    open override var prefersStatusBarHidden: Bool {
         self.isHiddenStausBar
     }
 }
@@ -52,8 +47,8 @@ extension UINavigationController {
     open override var childForStatusBarHidden: UIViewController? {
         return self.topViewController
     }
-
-    override open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+    
+    open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .fade
     }
 }

@@ -10,23 +10,23 @@ import UIKit
 /// 带有展位文字的TextView
 open class UITextPlaceholderView: UITextView {
     /// 最多文字数 英文-1 汉字-1
-    public var maxTextLength: Int?
+    open var maxTextLength: Int?
     /// 最大字节数 英文-1 汉字-2
-    public var maxTextByte: Int?
+    open var maxTextByte: Int?
     /// 占位文字
-    public var placeholder: (String?)->Void {
+    open var placeholder: (String?)->Void {
         return { c in
             self._placeholder.text = c
         }
     }
     /// 占位文字颜色
-    public var placeholderColor: (UIColor?)->Void {
+    open var placeholderColor: (UIColor?)->Void {
         return { c in
             self._placeholder.textColor = c
         }
     }
     /// 文字间隔,在font设置之后
-    public var lineSpacing: (CGFloat)->Void {
+    open var lineSpacing: (CGFloat)->Void {
         return { spacing in
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = spacing
@@ -35,31 +35,31 @@ open class UITextPlaceholderView: UITextView {
         }
     }
     /// 富文本内容
-    public override var attributedText: NSAttributedString! {
+    open override var attributedText: NSAttributedString! {
         willSet {
             guard let inputText = newValue else { return }
             self._placeholder.isHidden = !inputText.string.isEmpty
         }
     }
     /// 输入内容
-    public override var text: String! {
+    open override var text: String! {
         willSet {
             guard let inputText = newValue else { return }
             self._placeholder.isHidden = !inputText.isEmpty
         }
     }
-    public override var textColor: UIColor? {
+    open override var textColor: UIColor? {
         willSet {
             self.tintColor = newValue
         }
     }
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         self._updateTextView()
     }
     
     /// 重写光标尺寸
-    public override func caretRect(for position: UITextPosition) -> CGRect {
+    open override func caretRect(for position: UITextPosition) -> CGRect {
         let originalRect = super.caretRect(for: position)
         return originalRect
     }
