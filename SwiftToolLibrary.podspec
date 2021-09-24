@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SwiftToolLibrary"
-  s.version      = "1.1.8"
+  s.version      = "1.2.3"
   s.summary      = "SwiftToolLibrary"
 
   s.description  = <<-DESC
