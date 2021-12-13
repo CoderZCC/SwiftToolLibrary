@@ -78,6 +78,7 @@ open class UITextPlaceholderView: UITextView {
     @objc private func _textChangeNoteEx(_ note: Notification) {
         let finalText = self.text ?? ""
         self._placeholder.isHidden = !finalText.isEmpty
+        guard self.markedTextRange == nil else { return }
         if let count = self.maxTextLength {
             if finalText.count > count {
                 self.text = finalText.ex.sub(to: count)

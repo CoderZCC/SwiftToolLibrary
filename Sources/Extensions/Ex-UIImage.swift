@@ -13,7 +13,7 @@ public extension EX where T: UIImage {
     /// 压缩图片
     /// - Parameter maxLength: kb
     /// - Returns: 新图
-    func compressImage(toKb size: Int) -> UIImage {
+    func compress(toKb size: Int) -> UIImage {
         let num: Int = 1000
         let maxLength: Int = size * num
         var compression: CGFloat = 1

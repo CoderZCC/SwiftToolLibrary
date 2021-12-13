@@ -38,17 +38,28 @@ open class StatusBarViewController: UIViewController {
     }
 }
 
-extension UINavigationController {
-    
-    open override var childForStatusBarStyle: UIViewController? {
-        return self.topViewController
-    }
-    
-    open override var childForStatusBarHidden: UIViewController? {
-        return self.topViewController
-    }
-    
-    open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return .fade
-    }
-}
+// 在子类化的控制器的扩展实现即可
+//extension UINavigationController {
+//
+//    open override var childForStatusBarStyle: UIViewController? {
+//        return self.topViewController
+//    }
+//    open override var childForStatusBarHidden: UIViewController? {
+//        return self.topViewController
+//    }
+//    open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+//        return .fade
+//    }
+//}
+//
+//extension UITabBarController {
+//    open override var childForStatusBarStyle: UIViewController? {
+//        return self.selectedViewController
+//    }
+//    open override var childForStatusBarHidden: UIViewController? {
+//        return self.selectedViewController
+//    }
+//    open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+//        return .fade
+//    }
+//}

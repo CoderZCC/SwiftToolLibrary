@@ -44,11 +44,7 @@ public extension UIView {
     /// 添加点击事件
     /// - Parameter closure: (UITapGestureRecognizer)->Void
     func addTapGesure(_ closure: @escaping UIViewTapClosure) {
-        if self.gestureRecognizers?.contains(where: { $0 is _TapGestureRecognizer }) ?? false {
-            for s in self.gestureRecognizers ?? [] where s is _TapGestureRecognizer {
-                self.removeGestureRecognizer(s)
-            }
-        }
+        self.gestureRecognizers?.removeAll(where: { $0 is _TapGestureRecognizer })
         k_setAssociatedObject(key: UIView.keyEx, value: closure)
         self.isUserInteractionEnabled = true
         let tap = _TapGestureRecognizer(target: self, action: #selector(_tapActionEx))

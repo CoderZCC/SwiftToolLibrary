@@ -25,10 +25,8 @@ public extension EX where T: UITextField {
     var maxTextLength: (Int)->Void {
         return { count in
             NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: nil, queue: OperationQueue.main) { (_) in
-                guard let input = self.value.text else { return }
-                if input.count > count {
-                    self.value.text = self.value.text?.ex.sub(to: count)
-                }
+                guard let input = self.value.text, self.value.markedTextRange == nil, input.count > count else { return }
+                self.value.text = input.ex.sub(to: count)
             }
         }
     }
@@ -36,10 +34,8 @@ public extension EX where T: UITextField {
     var maxTextByte: (Int)->Void {
         return { count in
             NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: nil, queue: OperationQueue.main) { (_) in
-                guard let input = self.value.text else { return }
-                if input.ex.byteCount > count {
-                    self.value.text = self.value.text?.ex.subByByte(to: count)
-                }
+                guard let input = self.value.text, self.value.markedTextRange == nil, input.ex.byteCount > count else { return }
+                self.value.text = input.ex.subByByte(to: count)
             }
         }
     }
