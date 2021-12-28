@@ -35,25 +35,7 @@ extension ViewController {
         
         self.view.addSubview(textView)
     }
-    
-    func _testCompressImage() {
-        let imgV = UIImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-        let original = UIImage(named: "img1")!
         
-        print(original.size)
-        
-        let new = original.ex.compress(maxKbSize: 1024)
-        let deal = UIImage(data: new ?? Data())
-        print(deal?.size ?? 0)
-        
-        imgV.image = deal
-        imgV.contentMode = .scaleAspectFit
-        imgV.center = self.view.center
-        imgV.layer.borderWidth = 1
-        imgV.layer.borderColor = UIColor.red.cgColor
-        self.view.addSubview(imgV)
-    }
-    
     func _testTextLimit() {
         
         let tf = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
@@ -88,7 +70,7 @@ func test() {
             // 第一行的文案
             content += text[Range(realRange, in: text)!]
         }
-        printLog(content)
+        print(content)
     }
 }
 

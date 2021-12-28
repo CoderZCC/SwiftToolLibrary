@@ -13,12 +13,12 @@ public extension EX where T: UIImage {
     /// 压缩图片
     /// - Parameter maxLength: kb
     /// - Returns: 新图
-    func compress(toKb size: Int) -> UIImage {
+    func compress(toKb size: Int) -> (image: UIImage, data: Data) {
         let num: Int = 1000
         let maxLength: Int = size * num
         var compression: CGFloat = 1
         guard var data = self.value.jpegData(compressionQuality: compression) ?? self.value.pngData(),
-            data.count > maxLength else { return self.value }
+              data.count > maxLength else { return (self.value, self.value.jpegData(compressionQuality: 1.0) ?? self.value.pngData() ?? Data()) }
         debugPrint("<====")
         debugPrint("Before compressing quality, image size =", data.count / num, "KB")
         
@@ -40,7 +40,7 @@ public extension EX where T: UIImage {
         }
         debugPrint("[compress]: After compressing quality, image size =", data.count / num, "KB")
         var resultImage: UIImage = UIImage(data: data)!
-        if data.count < maxLength { return resultImage }
+        if data.count < maxLength { return (resultImage, data) }
         
         // Compress by size
         var lastDataLength: Int = 0
@@ -59,7 +59,7 @@ public extension EX where T: UIImage {
         }
         debugPrint("[compress]: After compressing size loop, image size =", data.count / num, "KB")
         debugPrint("====>")
-        return resultImage
+        return (resultImage, data)
     }
 }
 
