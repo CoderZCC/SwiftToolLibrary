@@ -9,8 +9,13 @@ import Foundation
 
 public protocol EncodableToDict: Encodable { }
 public extension EncodableToDict {
+    
+    var toData: Data? {
+        try? JSONEncoder().encode(self)
+    }
+    
     var toDict: [String: Any]? {
-        if let data = try? JSONEncoder().encode(self) {
+        if let data = self.toData {
             return try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
         }
         return nil

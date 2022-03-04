@@ -10,6 +10,17 @@ import UIKit
 extension UIView: EXCompatible { }
 public extension EX where T: UIView {
     
+    /// 设置圆角 clipsToBounds = true
+    var cornerRadius: CGFloat {
+        set {
+            self.value.layer.cornerRadius = newValue
+            self.value.clipsToBounds = true
+        }
+        get {
+            self.value.layer.cornerRadius
+        }
+    }
+    
     //MARK: 设置特定的圆角
     /// 设置特定的圆角
     ///

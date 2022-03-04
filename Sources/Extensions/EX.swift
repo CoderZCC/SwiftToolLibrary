@@ -8,7 +8,7 @@
 import Foundation
 
 public struct EX<T> {
-    var value: T
+    public var value: T
 }
 
 public protocol EXCompatible { }
